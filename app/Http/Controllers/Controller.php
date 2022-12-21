@@ -11,20 +11,20 @@ use Illuminate\Support\Facades\Storage;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    // use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function saveImage($image, $path = 'public')
-    {
-        if (!$image) {
-            return null;
-        }
+    // public function saveImage($image, $path = 'public')
+    // {
+    //     if (!$image) {
+    //         return null;
+    //     }
 
-        $filename = time() . '.png';
-        // save image
-        \Storage::disk($path)->put($filename, base64_decode($image));
+    //     $filename = time() . '.png';
+    //     // save image
+    //     \Storage::disk($path)->put($filename, base64_decode($image));
 
-        //return the path
-        // Url is the base url exp: localhost:8000
-        return URL::to('/') . '/storage/app/' . $path . '/' . $filename;
-    }
+    //     //return the path
+    //     // Url is the base url exp: localhost:8000  
+    //     return URL::to('/') . '/storage/app/' . $path . '/' . $filename;
+    // }
 }
