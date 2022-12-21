@@ -27,7 +27,8 @@ class ServicesController extends Controller
             ->with('services')
             ->get()
             ->map(function ($category) {
-                $category->photo = url("storage/categories/{$category->photo}");
+                //$category->photo = url("storage/categories/{$category->photo}");
+                $category->photo = url("{$category->photo}");
                 return $category;
             });
 
@@ -71,7 +72,8 @@ class ServicesController extends Controller
             $savedAppointment = Appointment::where('id', $appointment->id)
                 ->with('stylist', 'client', 'service')
                 ->firstOrFail();
-            $savedAppointment->stylist->photo = url("storage/stylists/{$stylist->photo}");
+            // $savedAppointment->stylist->photo = url("storage/stylists/{$stylist->photo}");
+            $savedAppointment->stylist->photo = url("{$stylist->photo}");
 
             DB::commit();
 
@@ -110,7 +112,8 @@ class ServicesController extends Controller
         }
 
         $service->stylists = $service->stylists->map(function ($stylist) {
-            $stylist->photo = url("storage/stylists/{$stylist->photo}");
+            // $stylist->photo = url("storage/stylists/{$stylist->photo}");
+            $stylist->photo = url("{$stylist->photo}");
             $stylist->locked_dates = $stylist->appointments->map(function ($appointment) {
                 return $appointment->dated_at->format('Y-m-d H:i:s');
             });
