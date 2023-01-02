@@ -46,7 +46,7 @@ class AuthController extends Controller
         // attempt login
         if (!Auth::attempt($attrs)) {
             return response([
-                'message' => 'Invalid credentials.'
+                'message' => 'Error en usuario o contraseña.'
             ], 403);
         }
 
