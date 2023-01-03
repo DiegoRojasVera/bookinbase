@@ -15,6 +15,7 @@ class AuthController extends Controller
         $attrs = $request->validate([
             'name' => 'required|string',
             'phone'=>'required|string',
+            'image'=>'string',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed'
         ]);
@@ -24,6 +25,7 @@ class AuthController extends Controller
             'name' => $attrs['name'],
             'phone'=> $attrs['phone'],
             'email' => $attrs['email'],
+            'image'=>$attrs['image'],
             'password' => bcrypt($attrs['password'])
         ]);
 
@@ -75,19 +77,20 @@ class AuthController extends Controller
     }
 
     // update user
-    public function update(Request $request)
+    public function update1(Request $request)
     {
         $attrs = $request->validate([
             'name' => 'required|string',
             'phone' => 'required|string',
+            'image' => 'string',
             
         ]);
 
-        $image = $this->saveImage($request->image, 'profiles');
 
         auth()->user()->update([
             'name' => $attrs['name'],
-            'image' => $image
+            'phone' => $attrs['phone'],
+            'image' => $attrs['image'],
         ]);
 
         return response([
@@ -95,4 +98,44 @@ class AuthController extends Controller
             'user' => auth()->user()
         ], 200);
     }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response([
+                'message' => 'Post not found.'
+            ], 403);
+        }
+
+        // if ($user->user_id != auth()->user()->id) {
+        //     return response([
+        //         'message' => 'Permission denied.'
+        //     ], 403);
+        // }
+
+        //validate fields
+        $attrs = $request->validate([
+            'name' => 'required|string',
+            'phone' => 'required|string',
+            'image' => 'required|string',
+        ]);
+
+        $user->update([
+            'name' =>  $attrs['name'],
+            'phone' =>  $attrs['phone'],
+            'image' =>  $attrs['image'],
+            
+        ]);
+
+        // for now skip for post image
+
+        return response([
+            'message' => 'Post updated.',
+            'user' => $user
+        ], 200);
+    }
+
+
 }
