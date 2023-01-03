@@ -119,7 +119,7 @@ class AuthController extends Controller
         $attrs = $request->validate([
             'name' => 'required|string',
             'phone' => 'required|string',
-            'image' => 'required|string',
+            'image' => 'string',
         ]);
 
         $user->update([
