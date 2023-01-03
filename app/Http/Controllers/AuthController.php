@@ -77,7 +77,7 @@ class AuthController extends Controller
     }
 
     // update user
-    public function update(Request $request)
+    public function update1(Request $request)
     {
         $attrs = $request->validate([
             'name' => 'required|string',
@@ -99,7 +99,7 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function update1(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $user = User::find($id);
 
