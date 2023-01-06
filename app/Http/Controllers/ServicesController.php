@@ -133,4 +133,30 @@ class ServicesController extends Controller
             'appointment' => Appointment::where('id', $id)->with('client', 'stylist')->get()
         ], 200);
     }
+
+     // delete a appointment
+     public function destroy($id)
+     {
+         $appointment = Appointment::find($id);
+ 
+         if(!$appointment)
+         {
+             return response([
+                 'message' => 'Appoint not found.'
+             ], 403);
+         }
+ 
+        //  if($appointment->user_id != auth()->user()->id)
+        //  {
+        //      return response([
+        //          'message' => 'Permission denied.'
+        //      ], 403);
+        //  }
+ 
+         $appointment->delete();
+ 
+         return response([
+             'message' => 'appointment deleted.'
+         ], 200);
+     }
 }
