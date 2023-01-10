@@ -12,6 +12,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         //validate fields
+        
         $attrs = $request->validate([
             'name' => 'required|string',
             'phone'=>'required|string',
