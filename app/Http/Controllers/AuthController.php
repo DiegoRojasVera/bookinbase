@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         //validate fields
-        
+
         $attrs = $request->validate([
             'name' => 'required|string',
             'phone'=>'required|string',
@@ -25,7 +25,6 @@ class AuthController extends Controller
             'name' => $attrs['name'],
             'phone'=> $attrs['phone'],
             'email' => $attrs['email'],
-            'image'=>$attrs['image'],
             'password' => bcrypt($attrs['password'])
         ]);
 
