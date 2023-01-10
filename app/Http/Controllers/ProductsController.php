@@ -68,7 +68,7 @@ class ProductsController extends Controller
          return response()
              ->json(Client::where('email', $email)
                  ->with('appointments.stylist', 'appointments.service')
-                 ->orderByDesc('email', 'DESC')
+                 ->orderByDesc('inicio', 'DESC')
                  ->get());
      }
     // public function show($id)
