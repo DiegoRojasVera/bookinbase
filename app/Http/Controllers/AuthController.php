@@ -16,6 +16,7 @@ class AuthController extends Controller
         $attrs = $request->validate([
             'name' => 'required|string',
             'phone'=>'required|string',
+            'fechaN'=>'required|string',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed'
         ]);
@@ -24,6 +25,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $attrs['name'],
             'phone'=> $attrs['phone'],
+            'fechaN'=> $attrs['fechaN'],
             'email' => $attrs['email'],
             'password' => bcrypt($attrs['password'])
         ]);
@@ -104,7 +106,7 @@ class AuthController extends Controller
 
         if (!$user) {
             return response([
-                'message' => 'Post not found.'
+                'message' => 'Actualizado'
             ], 403);
         }
 
@@ -119,12 +121,16 @@ class AuthController extends Controller
             'name' => 'required|string',
             'phone' => 'required|string',
             'image' => 'string',
+            'fechaN' => 'required|string',
+            
         ]);
 
         $user->update([
             'name' =>  $attrs['name'],
             'phone' =>  $attrs['phone'],
             'image' =>  $attrs['image'],
+            'fechaN' =>  $attrs['fechaN'],
+
             
         ]);
 

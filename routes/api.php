@@ -20,16 +20,16 @@ Route::get('services/{id}', 'App\Http\Controllers\ServicesController@show');
 
 Route::get('appointment/{id}', 'App\Http\Controllers\ServicesController@showAppointment');
 Route::get('appointment', 'App\Http\Controllers\ServicesController@showAppointment');
-Route::delete('appointment/{id}','App\Http\Controllers\ServicesController@destroy');
+Route::delete('appointment/{id}', 'App\Http\Controllers\ServicesController@destroy');
 
 Route::get('clients', 'App\Http\Controllers\ClientController@index');
 Route::get('clients/{email}', 'App\Http\Controllers\ClientController@show'); // get single client
-Route::delete('clients/{id}','App\Http\Controllers\ClientController@destroy');
+Route::delete('clients/{id}', 'App\Http\Controllers\ClientController@destroy');
 
-Route::get('stylist/{id}', 'App\Http\Controllers\ClientStylist@show'); 
+Route::get('stylist/{id}', 'App\Http\Controllers\ClientStylist@show');
 Route::get('stylist', 'App\Http\Controllers\ClientStylist@index');
 
-Route::get('service/{id}', 'App\Http\Controllers\ServiceController@show'); 
+Route::get('service/{id}', 'App\Http\Controllers\ServiceController@show');
 Route::get('service', 'App\Http\Controllers\ServiceController@index');
 
 Route::resource('/client', 'App\Http\Controllers\ProductsController')->except([
