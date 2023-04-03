@@ -4,6 +4,7 @@
 /public/storage
 /storage/*.key
 #/vendor
+Procfile
 storage
 .env
 .env.backup
